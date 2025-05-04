@@ -1,0 +1,14 @@
+.map-wrap {
+  width: 100%;
+  max-width: 800px;
+  height: 500px; /* Smaller height */
+  margin: 1rem auto; /* center it horizontally */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}

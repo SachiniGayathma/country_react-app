@@ -1,0 +1,168 @@
+/* General Styles */
+.view-more-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden; /* Prevent overflow */
+
+}
+
+.flag-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 150px; /* Adds consistent space between flag and details */
+  animation: slideInRight 0.8s ease forwards;
+}
+
+.country-flag-wrapper {
+  animation: slideInLeft 0.8s ease forwards;
+}
+
+.country-flag {
+  width: 300px;
+  height: 190px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-right: 50px;
+}
+
+.country-flag:hover {
+  transform: scale(1.05);
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 600px;
+  width: 100%; /* Ensure it uses available space */
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+p {
+  font-size: 1.1rem;
+  margin: 5px 0;
+  color: #666;
+}
+
+.info-grid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-grid p {
+  margin: 3px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.map-wrap {
+  width: 100%;
+  height: 450px;
+  margin-top: 50px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  animation: slideUpFade 1s ease forwards;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .view-more-container {
+    padding: 25px 15px;
+  }
+
+  .flag-info-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Smaller gap for smaller screens */
+  }
+
+  .country-flag {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+
+  .info-container {
+    max-width: 100%;
+    width: 90%; /* Ensure it fits well on smaller screens */
+  }
+
+  .info-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Adjust map height for smaller screens */
+  .map-wrap {
+    height: 300px;
+    margin-top: 30px;
+  }
+}
+
+
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
