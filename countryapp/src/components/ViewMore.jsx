@@ -9,6 +9,7 @@ import './Map.css';
 
 const ViewMore = () => {
   const [details, setDetails] = useState(null);
+  const [description,setDescription] = useState(null);
   const { country } = useParams();
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -28,7 +29,19 @@ const ViewMore = () => {
     };
 
     fetchDetails();
-  }, [country]);
+
+    const fetchDescription = async()=>{
+      const res = await axios.get(`https://en.wikipedia.org/api/rest_v1/page/summary/${country}`);
+      setDescription(res.data.extract);
+
+    }
+
+    fetchDescription();
+
+   
+
+
+ }, [country]);
 
   useEffect(() => {
     if (!details || !mapContainer.current || map.current) return;
@@ -53,7 +66,7 @@ const ViewMore = () => {
   if (!details) return <p>Loading...</p>;
 
   return (
-    <div className="view-more-container">
+    <div>
       <div className="flag-info-container">
         <img
           src={details.flags.png}
@@ -61,8 +74,13 @@ const ViewMore = () => {
           className="country-flag"
         />
         <div className="info-container">
-          <h1>{details.name?.common}</h1>
+          <h1 style={{marginTop : "100px"}}>{details.name?.common}</h1>
+          <p>{description}</p>
+          
+
           <p><strong>Official Name:</strong>{details.name?.official}</p>
+
+
           <div className="info-grid">
             <div className="info-col">
               <p><strong>Capital:</strong> {details.capital?.[0]}</p>

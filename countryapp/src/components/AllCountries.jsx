@@ -8,6 +8,8 @@ const AllCountries = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState('');
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   //console.log(selectedLanguage);
 
@@ -33,6 +35,26 @@ const AllCountries = () => {
     };
 
     fetchFilteredCountries();
+
+     const fetchNews = async () => {
+          try {
+            const response = await axios.get(
+              'https://gnews.io/api/v4/search?q=example&apikey=9980fb8cd2cb24fd5bf2b7b949c7d5e2'
+            );
+    
+            if (Array.isArray(response.data.articles)) {
+              setNews(response.data.articles);
+            } else {
+              console.error("Unexpected API response:", response.data);
+            }
+          } catch (error) {
+            console.error('Error fetching news:', error);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchNews();
   }, [searchQuery, selectedRegion, selectedLanguage]);
 
   const handleOnClick = (countryName) => {
@@ -41,6 +63,30 @@ const AllCountries = () => {
 
   return (
     <div style={{ textAlign: "center", margin: "30px 0" }}>
+
+      <div className="news-section">
+  <h2 className="news-heading">Latest News</h2>
+
+  {loading ? (
+    <p>Loading...</p>
+  ) : (
+    <div className="news-ticker">
+      <div className="news-track">
+        {news.map((article, index) => (
+          <div className="news-card" key={index}>
+            <h3>{article.title}</h3>
+            <p>{article.description}</p>
+            {article.image && <img src={article.image} alt="news" />}
+            <a href={article.url} target="_blank" rel="noopener noreferrer">
+              Read More
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
       <h2 style={{ 
         fontWeight: "500", 
         fontSize: "1.4rem", 
@@ -54,6 +100,8 @@ const AllCountries = () => {
         <span className="rotating-globe">🌍</span>
         Looking for a country? Use the filters below to search by name, region, or language.
       </h2>
+
+
 
       <div style={{ textAlign: "center", margin: "20px 0", display: "flex", justifyContent: "center", gap: "15px", flexWrap: "wrap" }}>
         <input

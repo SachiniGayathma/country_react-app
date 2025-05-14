@@ -18,6 +18,7 @@
 .flag-info-container {
   display: flex;
   align-items: center;
+  margin-left: 200px;
   justify-content: flex-start;
   width: 100%;
   margin-bottom: 20px;
@@ -165,4 +166,24 @@ p {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.news-heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 30px 0 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.news-heading::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 3px;
+  background-color: #007bff;
+  margin: 8px auto 0;
+  border-radius: 2px;
 }
